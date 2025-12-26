@@ -10,8 +10,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.example.weatherforecast.presentation.navigation.WeatherNavGraph
-import com.example.weatherforecast.presentation.theme.WeatherForecastTheme
+import com.example.weatherforecast.feature.presentation.navigation.WeatherNavGraph
+import com.example.weatherforecast.core.presentation.theme.WeatherForecastTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

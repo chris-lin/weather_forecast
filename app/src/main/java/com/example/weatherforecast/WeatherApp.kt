@@ -1,7 +1,7 @@
 package com.example.weatherforecast
 
 import android.app.Application
-import com.example.weatherforecast.data.local.DatabaseInitializer
+import com.example.weatherforecast.core.data.local.DatabaseInitializer
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

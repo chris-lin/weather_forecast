@@ -61,6 +61,72 @@ The app follows Clean Architecture principles with three main layers:
 - **Domain Layer** - Business logic, use cases, models
 - **Presentation Layer** - Jetpack Compose UI, ViewModels
 
+## Modularization
+
+The project uses a multi-module architecture to improve build performance, code organization, and scalability.
+
+### Module Structure
+
+```
+weather_forecast_app/
+├── :app                    # Application entry point
+├── :core                   # Shared infrastructure
+├── :domain                 # Business logic layer
+├── :data                   # Data implementation layer
+└── :feature                # Presentation layer
+```
+
+### Module Details
+
+#### :app
+- **Purpose**: Application entry point and navigation setup
+- **Contents**: `MainActivity`, `WeatherApp` (Application class)
+- **Dependencies**: All other modules
+
+#### :core
+- **Purpose**: Shared infrastructure and utilities
+- **Contents**:
+  - Network layer (Retrofit, API services, DTOs)
+  - Database layer (Room, DAOs, Entities)
+  - Location services
+  - UI components and theme
+  - Utility classes
+- **Dependencies**: `:domain` (for repository interfaces)
+
+#### :domain
+- **Purpose**: Business logic and domain models
+- **Contents**:
+  - Domain models (Weather, City, DailyForecast, Location)
+  - Repository interfaces
+  - Use cases (8 use cases)
+- **Dependencies**: None (pure Kotlin)
+
+#### :data
+- **Purpose**: Data layer implementation
+- **Contents**:
+  - Repository implementations
+  - Data mappers (DTO ↔ Entity ↔ Domain)
+  - DI modules for repositories
+- **Dependencies**: `:core`, `:domain`
+
+#### :feature
+- **Purpose**: Presentation layer
+- **Contents**:
+  - UI screens (Home, CityList, CitySearch, WeeklyForecast)
+  - ViewModels and UI states
+  - Navigation graph
+- **Dependencies**: `:core`, `:domain`
+
+### Module Dependency Graph
+
+```
+:app
+├── :core ──────> :domain
+├── :domain
+├── :data ──────> :core, :domain
+└── :feature ───> :core, :domain
+```
+
 ## API
 
 - **Provider**: OpenWeatherMap
